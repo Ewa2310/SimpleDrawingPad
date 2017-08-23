@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Drawing Grid</title>
+        <style>
+            body {
+                background-color: #333;
+                color: #fff;
+            }
+            #container {
+                width: 800px;
+                margin: 50px auto;
+                background-color: #fff;
+                overflow: hidden;
+            }
+            .box {
+                width: 10px;
+                height: 10px;
+                box-sizing: border-box;
+                float: left;
+            }
+            .box:hover {
+                cursor: pointer;
+            }
+            section {
+                width: 200px;
+                margin: 50px auto;
+                text-align: center;
+            }
+            #cleaner {
+                width: 150px;
+                padding: 10px 20px;
+                background-color: #cc6666;
+                border: none;
+                border-radius: 10px;
+                outline: none;
+                font-size: 22px;
+                letter-spacing: 0.1em;
+                font-weight: bold;
+                color: #fff;
+                transition: 0.3s ease;
+            }
+            #cleaner:hover {
+                cursor: pointer;
+                background-color: #993333;
+            }
+        </style>
+    </head>
+    <body>
+        <section>
+            <button id="cleaner">Reset</button>
+        </section>
+        <div id="container"></div>
+        <script>
+            function generateGrid() {
+                for (i=0;i<3200;i++){
+                    var box = document.createElement("div");
+                    box.className = "box";
+                    var container = document.getElementById("container");
+                    container.appendChild(box);
+                }
+            }
+            function draw() {
+                var boxes = document.getElementsByClassName("box");
+                for(i=0;i<boxes.length;i++){
+                    boxes[i].onmouseover = function(){
+                        this.style.backgroundColor = "deeppink";
+                    }
+                    boxes[i].onmouseout = function(){
+                        this.style.backgroundColor = "#000";
+                    }
+                }
+            }
+            function resetGrid() {
+                document.getElementById("cleaner").onclick = function(){
+                     var boxes = document.getElementsByClassName("box");
+                     for(i=0;i<boxes.length;i++){
+                        boxes[i].style.backgroundColor = "transparent";
+                    }
+                }
+            }
+            generateGrid();
+            draw();
+            resetGrid();
+        </script>
+    </body>
+</html>
